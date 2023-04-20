@@ -10,3 +10,8 @@ variable "location" {
   default     = "West Europe"
 }
 
+variable "aa_account_name" {
+  description = "The name of the Automation Account"
+  type        = string
+  default     = "aa-alertexport-p-wue01"
+}
