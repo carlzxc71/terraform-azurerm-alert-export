@@ -2,6 +2,8 @@ data "local_file" "list_past_alerts_script" {
   filename = "./scripts/List-PastAlerts.ps1"
 }
 
+data "azurerm_subscription" "primary" {}
+
 resource "azurerm_resource_group" "this" {
   name     = var.rg_name
   location = var.location
@@ -15,6 +17,10 @@ resource "azurerm_automation_account" "this" {
   resource_group_name = azurerm_resource_group.this.name
   sku_name            = "Basic"
 
+  identity {
+    type = "SystemAssigned"
+  }
+
   tags = local.tags
 }
 
@@ -26,7 +32,7 @@ resource "azurerm_automation_runbook" "this" {
   log_verbose             = true
   log_progress            = true
   description             = "This script will list alerts from Azure Monitor from the last 25 days"
-  runbook_type            = "PowerShellWorkflow"
+  runbook_type            = "PowerShell"
 
   content = data.local_file.list_past_alerts_script.content
 
@@ -63,11 +69,23 @@ resource "azurerm_automation_variable_string" "secret" {
   description             = "Account key for access to the storage account"
 }
 
-resource "azurerm_automation_variable_string" "secret" {
+resource "azurerm_automation_variable_string" "storage_acc_name" {
   name                    = "storageAccountName"
   resource_group_name     = azurerm_resource_group.this.name
   automation_account_name = azurerm_automation_account.this.name
   value                   = "Temp placeholder"
   encrypted               = true
   description             = "Account key for access to the storage account"
+}
+
+resource "azurerm_role_assignment" "contributor" {
+  scope                = azurerm_resource_group.this.id
+  role_definition_name = "Contributor"
+  principal_id         = azurerm_automation_account.this.identity[0].principal_id
+}
+
+resource "azurerm_role_assignment" "monitor_reader" {
+  scope                = data.azurerm_subscription.primary.id
+  role_definition_name = "Monitoring Reader"
+  principal_id         = azurerm_automation_account.this.identity[0].principal_id
 }
