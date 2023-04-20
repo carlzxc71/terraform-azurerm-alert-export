@@ -3,4 +3,9 @@ module "alert_export" {
 
   rg_name         = "rg-alertexport-p-weu-001"
   aa_account_name = "aa-alertexport-p-weu-001"
+
+  schedule = {
+    day        = "Monday"
+    occurrence = 1
+  }
 }

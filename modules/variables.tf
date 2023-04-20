@@ -15,3 +15,15 @@ variable "aa_account_name" {
   type        = string
   default     = "aa-alertexport-p-wue01"
 }
+
+variable "schedule" {
+  description = "The schedule that the Runbook in the Automation Account will use"
+  type = object({
+    day        = string
+    occurrence = number
+  })
+  default = {
+    day        = "Monday"
+    occurrence = 1
+  }
+}

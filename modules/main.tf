@@ -32,3 +32,24 @@ resource "azurerm_automation_runbook" "this" {
 
   tags = local.tags
 }
+
+resource "azurerm_automation_schedule" "this" {
+  name                    = "powershell-automation-schedule"
+  resource_group_name     = azurerm_resource_group.this.name
+  automation_account_name = azurerm_automation_account.this.name
+  frequency               = "Month"
+
+  monthly_occurrence {
+    day        = var.schedule.day
+    occurrence = var.schedule.occurrence
+  }
+
+  description = "Occurs once a month"
+}
+
+resource "azurerm_automation_job_schedule" "this" {
+  schedule_name           = azurerm_automation_schedule.this.name
+  resource_group_name     = azurerm_resource_group.this.name
+  automation_account_name = azurerm_automation_account.this.name
+  runbook_name            = azurerm_automation_runbook.this.name
+}
