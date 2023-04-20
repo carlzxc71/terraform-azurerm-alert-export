@@ -4,7 +4,13 @@ Just practicing creating Terraform Modules
 module "alert_export" {
   source = "./modules"
 
-  rg_name = "walla"
+  rg_name         = "rg-alertexport-p-weu-001"
+  aa_account_name = "aa-alertexport-p-weu-001"
+
+  schedule = {
+    day        = "Monday"
+    occurrence = 1
+  }
 }
 ```
 
