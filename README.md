@@ -7,6 +7,8 @@ This is a module I created whilst in the process of learning to write Terraform 
 ## Usage
 
 ```HCL
+terraform {}
+
 provider "azurerm" {
   features {}
 }
