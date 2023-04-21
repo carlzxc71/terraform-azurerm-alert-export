@@ -1,3 +1,7 @@
+provider "azurerm" {
+  features {}
+}
+
 module "alert_export" {
   source = "./modules"
 

@@ -1,6 +1,16 @@
-Just practicing creating Terraform Modules
+## Create a solution to extract Azure Monitor Alerts
+
+This Terraform module deploys an Azure Automation Account, Storage Account and a Runbook to extract Azure Monitor Alerts from the past 25 days, exporting this to a CSV and stores it in a file share in Azure Storage.
+
+This is a module I created whilst in the process of learning to write Terraform and creating Terraform modules.
+
+## Usage
 
 ```HCL
+provider "azurerm" {
+  features {}
+}
+
 module "alert_export" {
   source = "./modules"
 
@@ -17,4 +27,19 @@ module "alert_export" {
   }
 }
 ```
+
+## Requirements
+
+| Name                                                                      | Version       |
+|---------------------------------------------------------------------------|---------------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3        |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm)       | >= 3.50 |
+
+## Providers
+
+| Name                                                          | Version       |
+|---------------------------------------------------------------|---------------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 3.50 |
+
+
 
