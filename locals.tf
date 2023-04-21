@@ -1,6 +1,5 @@
 locals {
   tags = {
-    deployedBy  = "terraform"
-    environment = "test"
+    deployedBy  = "terraform_module"
   }
 }
