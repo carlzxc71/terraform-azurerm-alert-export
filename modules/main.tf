@@ -99,3 +99,9 @@ resource "azurerm_storage_account" "this" {
 
   tags = local.tags
 }
+
+resource "azurerm_storage_share" "this" {
+  name                 = var.share_name
+  storage_account_name = azurerm_storage_account.this.name
+  quota                = var.storage_quota
+}

@@ -33,3 +33,15 @@ variable "storage_account_name" {
   type        = string
   default     = "stgalertexportpweu001"
 }
+
+variable "share_name" {
+  description = "The name of the File Share in the Storage Account"
+  type        = string
+  default     = "share01"
+}
+
+variable "storage_quota" {
+  description = "The quota in GB for the Share"
+  type        = number
+  default     = 5
+}
