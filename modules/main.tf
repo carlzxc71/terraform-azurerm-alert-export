@@ -105,3 +105,9 @@ resource "azurerm_storage_share" "this" {
   storage_account_name = azurerm_storage_account.this.name
   quota                = var.storage_quota
 }
+
+resource "azurerm_storage_share_directory" "this" {
+  name                 = var.storage_dir_name
+  share_name           = azurerm_storage_share.this.name
+  storage_account_name = azurerm_storage_account.this.name
+}

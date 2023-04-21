@@ -6,6 +6,7 @@ module "alert_export" {
   storage_account_name = "stgalertexportpweu001"
   share_name           = "share01"
   storage_quota        = 5
+  storage_dir_name     = "directory01"
 
   schedule = {
     day        = "Monday"

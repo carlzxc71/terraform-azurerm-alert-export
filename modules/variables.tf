@@ -45,3 +45,9 @@ variable "storage_quota" {
   type        = number
   default     = 5
 }
+
+variable "storage_dir_name" {
+  description = "The name of the Directory within the File Share"
+  type        = string
+  default     = "directory01"
+}
