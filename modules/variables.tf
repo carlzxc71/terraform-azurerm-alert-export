@@ -27,3 +27,9 @@ variable "schedule" {
     occurrence = 1
   }
 }
+
+variable "storage_account_name" {
+  description = "The name of the Storage Account"
+  type        = string
+  default     = "stgalertexportpweu001"
+}
