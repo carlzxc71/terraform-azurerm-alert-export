@@ -64,7 +64,7 @@ resource "azurerm_automation_variable_string" "secret" {
   name                    = "accountKey"
   resource_group_name     = azurerm_resource_group.this.name
   automation_account_name = azurerm_automation_account.this.name
-  value                   = "Temp Placeholder"
+  value                   = azurerm_storage_account.this.primary_access_key
   encrypted               = true
   description             = "Account key for access to the storage account"
 }
@@ -73,7 +73,7 @@ resource "azurerm_automation_variable_string" "storage_acc_name" {
   name                    = "storageAccountName"
   resource_group_name     = azurerm_resource_group.this.name
   automation_account_name = azurerm_automation_account.this.name
-  value                   = "Temp placeholder"
+  value                   = azurerm_storage_account.this.name
   encrypted               = false
   description             = "Account key for access to the storage account"
 }
