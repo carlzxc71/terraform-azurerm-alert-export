@@ -15,7 +15,7 @@ provider "azurerm" {
 
 module "alert_export" {
   source  = "carlzxc71/alert-export/azurerm"
-  version = "1.0.4"
+  version = "1.0.5"
 
   rg_name              = "rg-alertexport-p-weu-001"
   aa_account_name      = "aa-alertexport-p-weu-001"
